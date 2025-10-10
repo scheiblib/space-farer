@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
-    "@sap/cds": "^9",
+    "@cap-js/sqlite": "^2.0.3",
+    "@sap/cds": "^9.4.2",
+    "@sap/cds-sqlite": "^1.24.1",
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2",
     "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
     "start": "cds-serve",
+    "watch": "cds watch",
     "watch-galactic-ui": "cds watch --open galactic-ui/webapp/index.html?sap-ui-xx-viewCache=false --livereload true"
   },
   "private": true,
@@ -20,5 +22,19 @@
   ],
   "sapux": [
     "app/galactic-ui"
-  ]
+  ],
+"cds": {
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "url": "sqlite.db"
+      },
+      "model": [
+        "db/schema"
+      ]
+    }
+  }
+}
+
 }
