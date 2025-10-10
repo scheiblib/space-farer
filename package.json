@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-galactic-ui": "cds watch --open galacticui/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-galactic-ui": "cds watch --open galactic-ui/webapp/index.html?sap-ui-xx-viewCache=false --livereload true"
   },
   "private": true,
   "workspaces": [

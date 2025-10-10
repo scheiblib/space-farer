@@ -56,22 +56,22 @@ annotate service.Spacefarers with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'name',
+            Label : 'Name',
             Value : name,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'originPlanet',
+            Label : 'Origin planet',
             Value : originPlanet,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'stardustCollection',
+            Label : 'Stardust collection',
             Value : stardustCollection,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'wormholeNavigationSkill',
+            Label : 'Wormhole navigation skill',
             Value : wormholeNavigationSkill,
         },
     ],
