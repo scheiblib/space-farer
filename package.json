@@ -6,7 +6,9 @@
     "@cap-js/sqlite": "^2.0.3",
     "@sap/cds": "^9.4.2",
     "@sap/cds-sqlite": "^1.24.1",
-    "express": "^4"
+    "dotenv": "^17.2.3",
+    "express": "^4",
+    "nodemailer": "^7.0.9"
   },
   "devDependencies": {
     "cds-plugin-ui5": "^0.13.0"
@@ -23,18 +25,17 @@
   "sapux": [
     "app/galactic-ui"
   ],
-"cds": {
-  "requires": {
-    "db": {
-      "kind": "sqlite",
-      "credentials": {
-        "url": "sqlite.db"
-      },
-      "model": [
-        "db/schema"
-      ]
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "sqlite.db"
+        },
+        "model": [
+          "db/schema"
+        ]
+      }
     }
   }
-}
-
 }
