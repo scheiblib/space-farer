@@ -24,6 +24,41 @@ annotate service.Spacefarers with @(
     ]
 );
 
+annotate service.Spacefarers with @(
+    UI.Facets: [
+        {
+            $Type: 'UI.ReferenceFacet',
+            Label: 'Spacefarer Details',
+            Target: '@UI.FieldGroup#GeneratedGroup'
+        }
+    ]
+);
+
+annotate service.Spacefarers with @(
+    UI.HeaderInfo: {
+        TypeName: 'Spacefarer',
+        TypeNamePlural: 'Spacefarers',
+        Title: { Value: name },
+        Description: { Value: email }
+    }
+);
+
+annotate service.Spacefarers with {
+    spacesuitColor @UI.FieldControl : #Editable;
+    stardustCollection @UI.FieldControl : #Editable;
+};
+
+annotate service.Spacefarers with @(
+    UI.FieldGroup #GeneratedGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            { $Type : 'UI.DataField', Label : 'Name', Value : name },
+            { $Type : 'UI.DataField', Label : 'E-mail', Value : email },
+            { $Type : 'UI.DataField', Label : 'Spacesuit Color', Value : spacesuitColor },
+            { $Type : 'UI.DataField', Label : 'Stardust Collection', Value : stardustCollection }
+        ]
+    }
+);
 
 //Line Item - Table columns in List Report
 //Shows stardust collection status and spacesuit color
@@ -69,13 +104,13 @@ annotate service.Spacefarers with @(
         },
         {
             $Type: 'UI.DataField',
-            Value: department.departmentName,
+            Value: department.name,
             Label: 'Department',
             ![@UI.Importance]: #Medium
         },
         {
             $Type: 'UI.DataField',
-            Value: position.positionTitle,
+            Value: position.title,
             Label: 'Position',
             ![@UI.Importance]: #Medium
         }
@@ -154,15 +189,15 @@ annotate service.Spacefarers with {
                 },
                 {
                     $Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'departmentName'
+                    ValueListProperty: 'name'
                 },
                 {
                     $Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'galaxySector'
+                    ValueListProperty: 'galaxy'
                 }
             ]
         },
-        Common.Text: department.departmentName,
+        Common.Text: department.name,
         Common.TextArrangement: #TextOnly
     );
 }
@@ -184,15 +219,15 @@ annotate service.Spacefarers with {
                 },
                 {
                     $Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'positionTitle'
+                    ValueListProperty: 'title'
                 },
                 {
                     $Type: 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty: 'positionLevel'
+                    ValueListProperty: 'level'
                 }
             ]
         },
-        Common.Text: position.positionTitle,
+        Common.Text: position.title,
         Common.TextArrangement: #TextOnly
     );
 }
@@ -250,25 +285,25 @@ annotate service.Departments with @(
     UI.Identification: [
         {
             $Type: 'UI.DataField',
-            Value: departmentName
+            Value: name
         }
     ],
     
     UI.LineItem: [
         {
             $Type: 'UI.DataField',
-            Value: departmentCode,
+            Value: galaxy,
             Label: 'Code'
         },
         {
             $Type: 'UI.DataField',
-            Value: departmentName,
+            Value: name,
             Label: 'Department Name'
         },
         {
             $Type: 'UI.DataField',
-            Value: galaxySector,
-            Label: 'Galaxy Sector'
+            Value: established,
+            Label: 'Established'
         }
     ]
 );
@@ -289,25 +324,25 @@ annotate service.Positions with @(
     UI.Identification: [
         {
             $Type: 'UI.DataField',
-            Value: positionTitle
+            Value: title
         }
     ],
     
     UI.LineItem: [
         {
             $Type: 'UI.DataField',
-            Value: positionCode,
-            Label: 'Code'
+            Value: level,
+            Label: 'Level'
         },
         {
             $Type: 'UI.DataField',
-            Value: positionTitle,
+            Value: title,
             Label: 'Position Title'
         },
         {
             $Type: 'UI.DataField',
-            Value: positionLevel,
-            Label: 'Level'
+            Value: description,
+            Label: 'Description'
         }
     ]
 );

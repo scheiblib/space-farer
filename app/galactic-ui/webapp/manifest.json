@@ -126,7 +126,10 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/Spacefarers"
+              "contextPath": "/Spacefarers",
+              "editable": {
+                "mode": "Direct"
+              }
             }
           }
         }
