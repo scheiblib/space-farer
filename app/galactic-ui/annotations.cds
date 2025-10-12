@@ -24,10 +24,10 @@ annotate service.Spacefarers with @(
     ]
 );
 
-/**
- * Line Item - Table columns in List Report
- * Shows stardust collection status and spacesuit color
- */
+
+//Line Item - Table columns in List Report
+//Shows stardust collection status and spacesuit color
+
 annotate service.Spacefarers with @(
     UI.LineItem: [
         {
@@ -98,9 +98,9 @@ annotate service.Spacefarers with @(
     }
 );
 
-/**
- * Field properties for sorting and filtering
- */
+
+//Field properties for sorting and filtering
+
 annotate service.Spacefarers with {
     name @(
         title: 'Spacefarer Name',
@@ -137,9 +137,9 @@ annotate service.Spacefarers with {
     );
 }
 
-/**
- * Value Help for Department filtering
- */
+
+//Value Help for Department filtering
+
 annotate service.Spacefarers with {
     department @(
         Common.Label: 'Department',
@@ -167,9 +167,9 @@ annotate service.Spacefarers with {
     );
 }
 
-/**
- * Value Help for Position filtering
- */
+
+//Value Help for Position filtering
+
 annotate service.Spacefarers with {
     position @(
         Common.Label: 'Position',
@@ -197,9 +197,9 @@ annotate service.Spacefarers with {
     );
 }
 
-/**
- * Selection Variant - Predefined filter for high performers
- */
+
+//Selection Variant - Predefined filter for high performers
+
 annotate service.Spacefarers with @(
     UI.SelectionVariant#HighPerformers: {
         $Type: 'UI.SelectionVariantType',
