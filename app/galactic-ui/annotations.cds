@@ -27,14 +27,30 @@ annotate service.Spacefarers with @(
 annotate service.Spacefarers with {
     name @(
         title: 'Spacefarer Name',
-        Common.FieldControl: #ReadOnly,
+        Common.FieldControl: {
+            $value: #Mandatory,
+            ![@UI.Hidden]: {
+                $edmJson: {
+                    $Ne: [{$Path: 'IsActiveEntity'}, true]
+                }
+            }
+        },
+        Core.Immutable: true,
         Common.Label: 'Name'
     );
     
     email @(
         title: 'Email',
-        Common.FieldControl: #ReadOnly,
-        Core.Immutable: true
+        Common.FieldControl: {
+            $value: #Mandatory,
+            ![@UI.Hidden]: {
+                $edmJson: {
+                    $Ne: [{$Path: 'IsActiveEntity'}, true]
+                }
+            }
+        },
+        Core.Immutable: true,
+        Common.Label: 'Email'
     );
     
     originPlanet @(

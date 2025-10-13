@@ -62,5 +62,4 @@ module.exports = cds.service.impl(srv => {
       console.error("Error sending email:", err);
     }
   });
-
 });

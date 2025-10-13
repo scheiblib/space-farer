@@ -106,16 +106,8 @@
                   }
                 }
               },
-              "controlConfiguration": {
-                "@com.sap.vocabularies.UI.v1.LineItem": {
-                  "tableSettings": {
-                    "type": "ResponsiveTable",
-                    "rows": 1,                    
-                    "growing": true,               
-                    "growingThreshold": 1
-                  }
-                }
-              }
+              "initialLoad": true,
+              "editableHeaderContent": true
             }
           }
         },
@@ -125,10 +117,13 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "editableHeaderContent": false,
+              "editableHeaderContent": true,
               "contextPath": "/Spacefarers",
-              "editable": {
-                "mode": "Direct"
+              "content": {
+                "header": {
+                  "anchorBarVisible": true,
+                  "visible": true
+                }
               }
             }
           }
