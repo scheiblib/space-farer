@@ -1,6 +1,6 @@
 namespace galactic.space;
 entity Spacefarers {
-  key ID : UUID @default;
+  key ID : UUID;
   name : String @mandatory;
   email: String(255) @mandatory @assert.unique;
   originPlanet : String default('Earth');
@@ -14,7 +14,7 @@ entity Spacefarers {
 }
 
 entity Departments {
-  key ID : UUID @default;
+  key ID : UUID;
   name : String(100);
   galaxy : String(80);
   established : Integer;
@@ -29,7 +29,7 @@ type PositionLevel : Integer enum {
 }
 
 entity Positions {
-  key ID : UUID @default;
+  key ID : UUID;
   title : String(80);
   level : PositionLevel default(1);
   description : String;

@@ -24,6 +24,57 @@ annotate service.Spacefarers with @(
     ]
 );
 
+annotate service.Spacefarers with {
+    name @(
+        title: 'Spacefarer Name',
+        Common.FieldControl: #ReadOnly,
+        Common.Label: 'Name'
+    );
+    
+    email @(
+        title: 'Email',
+        Common.FieldControl: #ReadOnly,
+        Core.Immutable: true
+    );
+    
+    originPlanet @(
+        title: 'Origin Planet',
+        Common.FieldControl: #ReadOnly
+    );
+    
+    wormholeNavigationSkill @(
+        title: 'Wormhole Navigation Skill',
+        Common.FieldControl: #ReadOnly,
+        Common.Label: 'Skill Level'
+    );
+    
+    createdAt @(
+        title: 'Joined Date',
+        Common.FieldControl: #ReadOnly
+    );
+    
+    department @(
+        Common.FieldControl: #ReadOnly
+    );
+    
+    position @(
+        Common.FieldControl: #ReadOnly
+    );
+    
+    // EDITABLE FIELDS (can edit) ✏️
+    stardustCollection @(
+        title: 'Stardust Collection',
+        Common.FieldControl: #Mandatory,  // Editable & Required
+        Common.Label: 'Stardust Particles'
+    );
+    
+    spacesuitColor @(
+        title: 'Spacesuit Color',
+        Common.FieldControl: #Optional,  // Editable but Optional
+        Common.Label: 'Suit Color'
+    );
+}
+
 annotate service.Spacefarers with @(
     UI.Facets: [
         {
@@ -132,46 +183,6 @@ annotate service.Spacefarers with @(
         Visualizations: ['@UI.LineItem']
     }
 );
-
-
-//Field properties for sorting and filtering
-
-annotate service.Spacefarers with {
-    name @(
-        title: 'Spacefarer Name',
-        Common.FieldControl: #Mandatory,
-        Common.Label: 'Name'
-    );
-    
-    email @(
-        title: 'Email',
-        Common.FieldControl: #Mandatory,
-        Core.Immutable: true
-    );
-    
-    originPlanet @(
-        title: 'Origin Planet',
-        Common.FieldControl: #Optional
-    );
-    
-    stardustCollection @(
-        title: 'Stardust Collection',
-        Common.Label: 'Stardust Particles',
-        Measures.Unit: 'particles'
-    );
-    
-    wormholeNavigationSkill @(
-        title: 'Wormhole Navigation Skill',
-        Common.Label: 'Skill Level',
-    );
-    
-    spacesuitColor @(
-        title: 'Spacesuit Color',
-        Common.FieldControl: #Optional,
-        Common.Label: 'Suit Color'
-    );
-}
-
 
 //Value Help for Department filtering
 
