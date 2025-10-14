@@ -9,8 +9,8 @@ sap.ui.define(['sap/fe/test/ListReport'], function(ListReport) {
     return new ListReport(
         {
             appId: 'galacticui',
-            componentId: 'SpacefarersList',
-            contextPath: '/Spacefarers'
+            componentId: 'spacefarersList',
+            contextPath: '/spacefarers'
         },
         CustomPageDefinitions
     );

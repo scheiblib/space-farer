@@ -10,7 +10,7 @@ sap.ui.define([
         opaTest("Start application", function (Given, When, Then) {
             Given.iStartMyApp();
 
-            Then.onTheSpacefarersList.iSeeThisPage();
+            Then.onThespacefarersList.iSeeThisPage();
 
         });
 
@@ -18,12 +18,12 @@ sap.ui.define([
         opaTest("Navigate to ObjectPage", function (Given, When, Then) {
             // Note: this test will fail if the ListReport page doesn't show any data
             
-            When.onTheSpacefarersList.onFilterBar().iExecuteSearch();
+            When.onThespacefarersList.onFilterBar().iExecuteSearch();
             
-            Then.onTheSpacefarersList.onTable().iCheckRows();
+            Then.onThespacefarersList.onTable().iCheckRows();
 
-            When.onTheSpacefarersList.onTable().iPressRow(0);
-            Then.onTheSpacefarersObjectPage.iSeeThisPage();
+            When.onThespacefarersList.onTable().iPressRow(0);
+            Then.onThespacefarersObjectPage.iSeeThisPage();
 
         });
 

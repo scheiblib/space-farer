@@ -2,7 +2,7 @@ using GalacticService as service from '../../srv/galactic-service';
 
 ////////////////////////////////////////////////////////////////////////////
 //
-//  List Report - Galactic Spacefarers
+//  List Report - Galactic spacefarers
 //  Displays all spacefarers with stardust collection and spacesuit color
 //  Supports sorting, filtering, and pagination
 //
@@ -11,7 +11,7 @@ using GalacticService as service from '../../srv/galactic-service';
 /**
  * Selection Fields - Filters for the List Report
  */
-annotate service.Spacefarers with @(
+annotate service.spacefarers with @(
     UI.SelectionFields: [
         name,
         email,
@@ -24,7 +24,7 @@ annotate service.Spacefarers with @(
     ]
 );
 
-annotate service.Spacefarers with {
+annotate service.spacefarers with {
     name @(
         title: 'Spacefarer Name',
         Common.FieldControl: {
@@ -91,7 +91,7 @@ annotate service.Spacefarers with {
     );
 }
 
-annotate service.Spacefarers with @(
+annotate service.spacefarers with @(
     UI.Facets: [
         {
             $Type: 'UI.ReferenceFacet',
@@ -101,21 +101,21 @@ annotate service.Spacefarers with @(
     ]
 );
 
-annotate service.Spacefarers with @(
+annotate service.spacefarers with @(
     UI.HeaderInfo: {
         TypeName: 'Spacefarer',
-        TypeNamePlural: 'Spacefarers',
+        TypeNamePlural: 'spacefarers',
         Title: { Value: name },
         Description: { Value: email }
     }
 );
 
-annotate service.Spacefarers with {
+annotate service.spacefarers with {
     spacesuitColor @UI.FieldControl : #Editable;
     stardustCollection @UI.FieldControl : #Editable;
 };
 
-annotate service.Spacefarers with @(
+annotate service.spacefarers with @(
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
         Data : [
@@ -130,7 +130,7 @@ annotate service.Spacefarers with @(
 //Line Item - Table columns in List Report
 //Shows stardust collection status and spacesuit color
 
-annotate service.Spacefarers with @(
+annotate service.spacefarers with @(
     UI.LineItem: [
         {
             $Type: 'UI.DataField',
@@ -202,7 +202,7 @@ annotate service.Spacefarers with @(
 
 //Value Help for Department filtering
 
-annotate service.Spacefarers with {
+annotate service.spacefarers with {
     department @(
         Common.Label: 'Department',
         Common.ValueList: {
@@ -232,7 +232,7 @@ annotate service.Spacefarers with {
 
 //Value Help for Position filtering
 
-annotate service.Spacefarers with {
+annotate service.spacefarers with {
     position @(
         Common.Label: 'Position',
         Common.ValueList: {
@@ -262,7 +262,7 @@ annotate service.Spacefarers with {
 
 //Selection Variant - Predefined filter for high performers
 
-annotate service.Spacefarers with @(
+annotate service.spacefarers with @(
     UI.SelectionVariant#HighPerformers: {
         $Type: 'UI.SelectionVariantType',
         Text: 'High Performers',

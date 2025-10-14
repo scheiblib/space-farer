@@ -4,13 +4,16 @@
   "description": "A simple CAP project.",
   "dependencies": {
     "@cap-js/sqlite": "^2.0.3",
-    "@sap/cds": "^9.4.2",
+    "@sap/cds-mtxs": "^3.4.1",
     "@sap/cds-sqlite": "^1.24.1",
     "dotenv": "^17.2.3",
     "express": "^4",
-    "nodemailer": "^7.0.9"
+    "nodemailer": "^7.0.9",
+    "passport": "^0.7.0"
   },
   "devDependencies": {
+    "@sap/cds": "^9.4.3",
+    "@sap/cds-dk": "^9.4.1",
     "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
@@ -35,6 +38,39 @@
         "model": [
           "db/schema"
         ]
+      },
+      "auth": {
+        "strategy": "mock",
+        "users": {
+          "viewer": {
+            "password": "viewer",
+            "roles": ["Viewer", "authenticated-user"],
+            "attributes": {
+              "planet": ["Mars", "Venus", "Earth"]
+            }
+          },
+          "editor_mars": {
+            "password": "editor",
+            "roles": ["Editor", "authenticated-user"],
+            "attributes": {
+              "planet": ["Mars"]
+            }
+          },
+          "editor_venus": {
+            "password": "editor",
+            "roles": ["Editor", "authenticated-user"],
+            "attributes": {
+              "planet": ["Venus"]
+            }
+          },
+          "admin": {
+            "password": "admin",
+            "roles": ["Admin", "authenticated-user"],
+            "attributes": {
+              "planet": ["Earth", "Mars", "Venus"]
+            }
+          }
+        }
       }
     }
   }

@@ -1,15 +1,15 @@
 sap.ui.define([
     "sap/fe/test/JourneyRunner",
-	"galacticui/test/integration/pages/SpacefarersList",
-	"galacticui/test/integration/pages/SpacefarersObjectPage"
-], function (JourneyRunner, SpacefarersList, SpacefarersObjectPage) {
+	"galacticui/test/integration/pages/spacefarersList",
+	"galacticui/test/integration/pages/spacefarersObjectPage"
+], function (JourneyRunner, spacefarersList, spacefarersObjectPage) {
     'use strict';
 
     var runner = new JourneyRunner({
         launchUrl: sap.ui.require.toUrl('galacticui') + '/test/flp.html#app-preview',
         pages: {
-			onTheSpacefarersList: SpacefarersList,
-			onTheSpacefarersObjectPage: SpacefarersObjectPage
+			onThespacefarersList: spacefarersList,
+			onThespacefarersObjectPage: spacefarersObjectPage
         },
         async: true
     });

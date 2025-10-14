@@ -1,5 +1,5 @@
 namespace galactic.space;
-entity Spacefarers {
+entity spacefarers {
   key ID : UUID;
   name : String @mandatory;
   email: String(255) @mandatory @assert.unique;

@@ -21,7 +21,7 @@
     "entityRelatedConfig": [
       {
         "type": "Main Entity",
-        "value": "Spacefarers"
+        "value": "spacefarers"
       }
     ],
     "launchText": "To launch the generated app, start your CAP project:  and navigate to the following location in your browser:\n\nhttp://localhost:4004/galactic-ui/webapp/index.html"

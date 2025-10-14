@@ -1,65 +1,82 @@
 require("dotenv").config();
 const cds = require("@sap/cds");
 const nodemailer = require("nodemailer");
+
 module.exports = cds.service.impl(srv => {
   
-  srv.before("CREATE", "Spacefarers", async req => {
+  // Handle before CREATE
+  srv.before("CREATE", "spacefarers", async req => {
     const body = req.data;
-    console.log(JSON.stringify(body));
+    
+    // Validate required fields
     if (!body.name || !body.email) {
       req.error(400, "Spacefarer must have a name and email");
     }
-    const { email } = req.data;
 
-    if (email) {
-      const existing = await SELECT.one.from("Spacefarers")
-        .where({ email: email });
-
-      if (existing) {
-        req.reject(409, `Email '${email}' is already registered!`);
+    // Skip planet validation for Admin
+    if (!req.user.is('Admin')) {
+      // Validate user has access to the planet
+      if (!req.user.attr.planet.includes(body.originPlanet)) {
+        req.reject(403, `You don't have access to create spacefarers for planet ${body.originPlanet}`);
       }
     }
-    body.stardustCollection ||= 10;        // default stardust
-    body.wormholeNavigationSkill ||= 1;   // default wormhole skill
-  });
 
-  srv.before('UPDATE', 'Spacefarers', async (req) => {
-    const { email } = req.data;
-
-    // RESTRICT: Block email modification on UPDATE
-    if (email !== undefined) {
-      req.reject(400, `Email cannot be modified once set! Contact galactic administrator for changes.`);
+    // Check email uniqueness
+    const existing = await SELECT.one.from("spacefarers").where({ email: body.email });
+    if (existing) {
+      req.reject(409, `Email '${body.email}' is already registered!`);
     }
+
+    // Set defaults
+    body.stardustCollection ||= 10;
+    body.wormholeNavigationSkill ||= 1;
+    body.originPlanet ||= req.user.attr.planet[0];
   });
 
-  srv.after("CREATE", "Spacefarers", async (data, req) => {
-    const spacefarerName = data.name;
-    const recipientEmail = data.email;
+  // Handle createSpacefarer action
+  srv.on('createSpacefarer', async (req) => {
+    // Only admins can use this action (handled by @restrict annotation)
+    const { spacefarer } = req.data;
+    
+    if (!spacefarer.name || !spacefarer.email) {
+      req.reject(400, 'Name and email are required');
+    }
 
-    if (!recipientEmail) return;
-
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS
-      }
-    });
-    //console.log(JSON.stringify(transporter));
-    const mailOptions = {
-      from: '"Galactic HQ" <your-email@gmail.com>',
-      to: recipientEmail,
-      subject: "Welcome to the Stars, Spacefarer!",
-      text: `Congratulations ${spacefarerName}! Your cosmic journey has officially begun.`,
-      html: `<h1>Congratulations ${spacefarerName}!</h1><p>Your cosmic journey has officially begun.</p>`
+    const newSpacefarer = {
+      ID: cds.utils.uuid(),
+      ...spacefarer,
+      originPlanet: spacefarer.originPlanet || req.user.attr.planet[0],
+      stardustCollection: spacefarer.stardustCollection || 10,
+      wormholeNavigationSkill: spacefarer.wormholeNavigationSkill || 1
     };
 
     try {
+      const result = await INSERT.into("spacefarers").entries(newSpacefarer);
+      
+      // Send welcome email
+      const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_PASS
+        }
+      });
+
+      const mailOptions = {
+        from: '"Galactic HQ" <your-email@gmail.com>',
+        to: newSpacefarer.email,
+        subject: "Welcome to the Stars, Spacefarer!",
+        text: `Congratulations ${newSpacefarer.name}! Your cosmic journey has officially begun.`,
+        html: `<h1>Congratulations ${newSpacefarer.name}!</h1><p>Your cosmic journey has officially begun.</p>`
+      };
+
       await transporter.sendMail(mailOptions);
-      console.log(`Email sent to ${spacefarerName} (${recipientEmail})`);
-    } catch (err) {
-      console.error("Error sending email:", err);
+      
+      return result;
+
+    } catch (error) {
+      req.reject(500, `Error creating spacefarer: ${error.message}`);
     }
   });
 });

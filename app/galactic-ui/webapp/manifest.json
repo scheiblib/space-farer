@@ -81,52 +81,55 @@
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "SpacefarersList",
-          "target": "SpacefarersList"
+          "name": "spacefarersList",
+          "target": "spacefarersList"
         },
         {
-          "pattern": "Spacefarers({key}):?query:",
-          "name": "SpacefarersObjectPage",
-          "target": "SpacefarersObjectPage"
+          "pattern": "spacefarers({key}):?query:",
+          "name": "spacefarersObjectPage",
+          "target": "spacefarersObjectPage"
         }
       ],
       "targets": {
-        "SpacefarersList": {
+        "spacefarersList": {
           "type": "Component",
-          "id": "SpacefarersList",
+          "id": "spacefarersList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/Spacefarers",
+              "contextPath": "/spacefarers",
               "variantManagement": "Page",
               "navigation": {
-                "Spacefarers": {
+                "spacefarers": {
                   "detail": {
-                    "route": "SpacefarersObjectPage"
+                    "route": "spacefarersObjectPage"
                   }
                 }
               },
-              "initialLoad": true,
-              "editableHeaderContent": true
-            }
-          }
-        },
-        "SpacefarersObjectPage": {
-          "type": "Component",
-          "id": "SpacefarersObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "editableHeaderContent": true,
-              "contextPath": "/Spacefarers",
-              "content": {
-                "header": {
-                  "anchorBarVisible": true,
-                  "visible": true
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "rows": 1,                    
+                    "growing": true,               
+                    "growingThreshold": 1
+                  }
                 }
               }
             }
           }
+        },
+        "spacefarersObjectPage": {
+          "type": "Component",
+          "id": "spacefarersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": true,
+              "contextPath": "/spacefarers"
+              }
+            }
+          
         }
       }
     }

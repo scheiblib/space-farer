@@ -9,8 +9,8 @@ sap.ui.define(['sap/fe/test/ObjectPage'], function(ObjectPage) {
     return new ObjectPage(
         {
             appId: 'galacticui',
-            componentId: 'SpacefarersObjectPage',
-            contextPath: '/Spacefarers'
+            componentId: 'spacefarersObjectPage',
+            contextPath: '/spacefarers'
         },
         CustomPageDefinitions
     );
